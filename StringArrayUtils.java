@@ -189,15 +189,22 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
         ArrayList <String> newArray = new ArrayList <String> ();
-        newArray.add(array[0]);
-        for (int i = 1; i < array.length; i++) {
-            if( array[i-1] == array[i]) {
-                newArray.add(array[i-1] +array [i]);
+        
+        String consecutive = "";
+        for (int i = 0; i < array.length; i++) {
+            if(consecutive == "") {
+             consecutive = consecutive + array[i];   
+            }
+            else if( array[i-1] == array[i]) {
+                consecutive = consecutive + array[i];
             }
                 else if (array[i-1] != array[i]) {
-                    newArray.add(array[i-1]);
+                    newArray.add(consecutive);
+                    consecutive = array[i];
                 }
-        
+            if (i == array.length-1) {
+                newArray.add(consecutive);
+            } 
         
     } 
     String[] stringArray = new String[newArray.size()];
